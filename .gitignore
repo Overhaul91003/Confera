@@ -1,0 +1,31 @@
+# → Ignore Node modules everywhere
+**/node_modules/
+
+# → Ignore build/output and log files
+**/build/
+**/dist/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# → OS files
+.DS_Store
+
+# → All env files
+**/.env
+**/.env.*
+
+# → Coverage results
+**/coverage/
+
+# → Egress recordings & metadata
+livekit-egress/*.mp4
+livekit-egress/*.json
+livekit-egress/config.yaml      # keep your real config out of git
+
+# → Windows server binaries
+Livekit-server-windows/*.exe
+Livekit-server-windows/*.dll
+Livekit-server-windows/*.pdb
+Livekit-server-windows/livekit.yaml  # optionally ignore your real config

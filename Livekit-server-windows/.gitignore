@@ -1,0 +1,7 @@
+# LiveKit server executables & artifacts
+*.exe
+*.dll
+*.pdb
+
+# real config – keep secret
+livekit.yaml

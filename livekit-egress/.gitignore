@@ -1,0 +1,6 @@
+# recordings & metadata
+*.mp4
+*.json
+
+# real config (keep secret) – consider renaming to config.local.yaml
+config.yaml
