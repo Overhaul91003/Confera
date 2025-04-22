@@ -2,7 +2,7 @@
 
 This project was created as part of an internship at BARC.
 
-> ⚠️ **Disclaimer:** This repository is provided for demonstration purposes. It is *not* an exact replica of the confidential project developed at BARC.
+> ⚠️ **Disclaimer:** This repository is provided for demonstration purposes. It is *not* an exact replica of the confidential project developed at the Bhabha Atomic Research Center (BARC).
 
 ---
 
@@ -159,7 +159,7 @@ Detailed structure is maintained in this repo alongside this README.
 ---
 
 ## Development Status
-This project is still under development and is being worked upon each and every day, over a period of **4 months (January 15 — May 15, 2025)**.
+This project was built over 4 months (January 15 — May 15, 2025) and continues to evolve daily under active development.
 
 ---
 
@@ -172,7 +172,7 @@ This project is still under development and is being worked upon each and every 
 ---
 
 ## Future Improvements
-This project was developed over a period of **4 months (January 15 — May 15, 2025)**. Planned future enhancements include:
+Planned future enhancements include:
 
 - **Role-Based Access Control**: Introduce Admin, Moderator, and Participant roles with granular permissions.
 - **Database Integration**: Persist chat history, meeting metadata, and user profiles using a database (e.g., MongoDB or PostgreSQL).
