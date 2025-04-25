@@ -23,9 +23,18 @@ export default function InfoButton() {
     return [localParticipant, ...others];
   }, [participants, localParticipant]);
 
-  // Subcomponent to render each participant
+  // Copy link handler
+  const handleCopyLink = () => {
+    const params = new URLSearchParams(window.location.search);
+    const room = params.get('room');
+    const link = `${window.location.origin}/prejoin?room=${room}`;
+    navigator.clipboard.writeText(link)
+      .then(() => alert('Link copied to clipboard!'))
+      .catch(() => alert('Failed to copy link'));
+  };
+
+  // Participant item subcomponent
   const ParticipantItem = ({ participant }) => {
-    // Get muted state for camera and microphone
     const isCamMuted = useIsMuted('camera', { participant });
     const isMicMuted = useIsMuted('microphone', { participant });
 
@@ -39,11 +48,11 @@ export default function InfoButton() {
           borderBottom: '1px solid #444',
         }}
       >
-        <ParticipantName />
+        <ParticipantName participant={participant} />
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           {isCamMuted ? <VideoOff size={16} /> : <Video size={16} />}
           {isMicMuted ? <MicOff size={16} /> : <Mic size={16} />}
-          <ConnectionQualityIndicator />
+          <ConnectionQualityIndicator participant={participant} />
         </div>
       </div>
     );
@@ -62,7 +71,7 @@ export default function InfoButton() {
           cursor: 'pointer',
         }}
       >
-         Info
+        Info
       </button>
 
       {open && (
@@ -82,16 +91,33 @@ export default function InfoButton() {
             overflowY: 'auto',
           }}
         >
-          <h3
+          {/* Header with copy link button */}
+          <div
             style={{
-              margin: '0 0 8px',
-              fontSize: '16px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '8px',
               borderBottom: '1px solid #555',
               paddingBottom: '4px',
             }}
           >
-            Room Info
-          </h3>
+            <h3 style={{ margin: 0, fontSize: '16px' }}>Room Info</h3>
+            <button
+              onClick={handleCopyLink}
+              style={{
+                background: '#17A2B8',
+                color: 'white',
+                padding: '6px 12px',
+                borderRadius: '5px',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: '12px',
+              }}
+            >
+              Copy Link
+            </button>
+          </div>
 
           <p style={{ margin: '4px 0' }}>
             <strong>Name:</strong> <RoomName />
@@ -114,6 +140,7 @@ export default function InfoButton() {
     </div>
   );
 }
+
 
 
 

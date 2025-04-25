@@ -1,4 +1,4 @@
-# Video Conferencing Monorepo
+# Confera (Video Conferening Web Application)
 
 This project was created as part of an internship at BARC.
 
@@ -14,13 +14,14 @@ This project was created as part of an internship at BARC.
 5. [Prerequisites](#prerequisites)
 6. [Setup & Installation](#setup--installation)
 7. [Usage](#usage)
-8. [Contributing](#contributing)
-9. [License](#license)
+8. [Development Status](#development-status)
+9. [References](#references)
+10. [Future Improvements](#future-improvements)
 
 ---
 
 ## Project Overview
-This monorepo contains a full-stack video conferencing application built using the LiveKit media platform. It includes:
+This monorepo contains a full-stack video conferencing web application built using the LiveKit media platform. It includes:
 
 - **LiveKit Server** (Windows) in development mode, handling real-time audio/video routing.
 - **Egress Service** with Docker, generating composite MP4 recordings of meetings.

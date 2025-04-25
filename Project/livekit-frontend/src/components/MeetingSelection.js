@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { addJoin } from "../utils/meetingHistory";
 import MeetingHistory from "./MeetingHistory";
 
 const MeetingSelection = () => {
@@ -33,13 +32,8 @@ const MeetingSelection = () => {
 
     try {
       await axios.post("http://localhost:3000/createRoom", { roomName });
-
-      // ─── CLEAR ANY PREVIOUS CHAT HISTORY FOR THIS ROOM ───
       localStorage.removeItem(`chatMessages_${roomName}`);
-
       alert("Success, Room has been created!");
-
-      // Refresh room list
       setRooms([...rooms, { name: roomName, participants: 0 }]);
       setRoomName("");
     } catch (error) {
@@ -60,12 +54,8 @@ const MeetingSelection = () => {
       );
 
       if (response.data.token) {
-
-        // record the join
-        addJoin(room.name);
-
+        // Navigate to prejoin; actual join recording happens on prejoin submit
         navigate(`/prejoin?room=${room.name}`);
-
       } else {
         setError("Room does not exist. Please create one first.");
       }
@@ -74,9 +64,17 @@ const MeetingSelection = () => {
     }
   };
 
+  // Copy join link to clipboard
+  const handleCopyLink = (roomName) => {
+    const link = `${window.location.origin}/prejoin?room=${roomName}`;
+    navigator.clipboard.writeText(link)
+      .then(() => alert('Link copied to clipboard!'))
+      .catch(() => alert('Failed to copy link'));
+  };
+
   return (
     <div style={styles.container}>
-      <h1 style={styles.heading}>LiveKit Meeting</h1>
+      <h1 style={styles.heading}>Confera</h1>
 
       {/* Room Input and Create Button */}
       <div style={styles.inputContainer}>
@@ -102,9 +100,14 @@ const MeetingSelection = () => {
               <span style={styles.participants}>
                 {room.participants} participant(s)
               </span>
-              <button onClick={() => handleJoinRoom(room)} style={styles.joinButton}>
-                Join
-              </button>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <button onClick={() => handleJoinRoom(room)} style={styles.joinButton}>
+                  Join
+                </button>
+                <button onClick={() => handleCopyLink(room.name)} style={styles.copyButton}>
+                  Copy Link
+                </button>
+              </div>
             </li>
           ))}
         </ul>
@@ -114,7 +117,7 @@ const MeetingSelection = () => {
 
       {error && <p style={styles.errorText}>{error}</p>}
 
-      {/* ─── History Section ─── */}
+      {/* History Section */}
       <MeetingHistory />
     </div>
   );
@@ -132,9 +135,16 @@ const styles = {
     fontFamily: "'Arial', sans-serif",
   },
   heading: {
-    fontSize: "32px",
+    fontSize: "60px",
     fontWeight: "bold",
-    marginBottom: "20px",
+    textAlign: "center",
+    background: "linear-gradient(90deg, #6a11cb, #2575fc, #6a11cb)",
+    backgroundSize: "200% auto",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    animation: "shimmer 3s linear infinite",
+    textShadow: "0 0 10px rgba(255,255,255,0.5)",
+    marginBottom: "40px",
   },
   inputContainer: {
     display: "flex",
@@ -164,7 +174,7 @@ const styles = {
   roomsHeading: {
     fontSize: "25px",
     marginBottom: "10px",
-    fontWeight: "Bold",
+    fontWeight: "bold",
   },
   roomsList: {
     listStyleType: "none",
@@ -196,6 +206,16 @@ const styles = {
     borderRadius: "5px",
     transition: "0.3s",
   },
+  copyButton: {
+    padding: "8px 16px",
+    fontSize: "14px",
+    background: "#17a2b8",
+    color: "white",
+    border: "none",
+    cursor: "pointer",
+    borderRadius: "5px",
+    transition: "0.3s",
+  },
   noRooms: {
     textAlign: "center",
     opacity: "0.7",
@@ -207,6 +227,8 @@ const styles = {
 };
 
 export default MeetingSelection;
+
+
 
 
 

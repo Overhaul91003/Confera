@@ -7,6 +7,7 @@ const styles = {
     fontSize: "25px",
     marginTop: "30px",
     marginBottom: "10px",
+    justifyContent: "center",
   },
   headerRow: {
     display: "flex",
@@ -96,22 +97,64 @@ function formatDuration(ms) {
 }
 
 export default function MeetingHistory() {
-  const [history, setHistory] = useState([]);
+const [history, setHistory] = useState([]);
 
-  useEffect(() => {
-    setHistory(getHistory(10));
-  }, []);
+useEffect(() => {
+  setHistory(getHistory(10));
+}, []);
 
-  const handleDelete = (joinTime) => {
-    const all = JSON.parse(localStorage.getItem("meeting_history") || "[]");
-    const updatedAll = all.filter((e) => e.joinTime !== joinTime);
-    localStorage.setItem("meeting_history", JSON.stringify(updatedAll));
-    setHistory(getHistory(10));
-  };
+// Clears all entries both from localStorage and component state
+const handleClearAll = () => {
+  localStorage.removeItem("meeting_history");
+  setHistory([]);
+};
+
+
+const handleDelete = (joinTime) => {
+  const all = JSON.parse(localStorage.getItem("meeting_history") || "[]");
+  const updatedAll = all.filter((e) => e.joinTime !== joinTime);
+  localStorage.setItem("meeting_history", JSON.stringify(updatedAll));
+  setHistory(getHistory(10));
+};
 
   return (
     <>
-      <h3 style={styles.heading}>Recent Meetings</h3>
+      {/* Center the title + button as one group */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',          // full width of parent
+        }}
+      >
+        <h3
+          style={{
+            ...styles.heading,
+            margin: 0,                 // override top/bottom margins
+          }}
+        >
+          Recent Meetings
+        </h3>
+
+        <button
+          onClick={handleClearAll}
+          style={{
+            background: '#EE4B2B',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            padding: '5px 10px',
+            cursor: 'pointer',
+            marginLeft: '10px',   // small gap to the right of the title
+            alignSelf: 'center',      // ensure it sits centered
+          }}
+        >
+          Clear All
+        </button>
+      </div>
+
+      
       {history.length === 0 ? (
         <p style={styles.noHistory}>No recent meetings.</p>
       ) : (

@@ -4,6 +4,7 @@ import MeetingSelection from "./components/MeetingSelection";
 import PreJoinScreen from "./components/PreJoinScreen";
 import useLiveKitToken from "./hooks/useLiveKitToken";
 import InnerConferenceContent from "./components/InnerConferenceContent";
+import { addJoin } from './utils/meetingHistory';
 
 
 
@@ -80,13 +81,28 @@ const PreJoinScreenWrapper = () => {
   const [videoEnabled, setVideoEnabled] = useState(false);
   const [audioEnabled, setAudioEnabled] = useState(true);
 
+  // handle the actual submit from the PreJoin UI
+  const handlePreJoin = (values) => {
+    const finalName = values.username.trim() || `user-${Date.now()}`;
+    setParticipantName(finalName);
+    setVideoEnabled(values.videoEnabled);
+    setAudioEnabled(values.audioEnabled);
+
+    // *** RECORD THE JOIN HERE ***
+    addJoin(roomName);
+
+    navigate(
+      `/conference?room=${roomName}` +
+      `&name=${encodeURIComponent(finalName)}` +
+      `&video=${values.videoEnabled}` +
+      `&audio=${values.audioEnabled}`
+    );
+  };
+
   return (
     <PreJoinScreen
       roomName={roomName}
-      setParticipantName={setParticipantName}
-      setIsPreJoinComplete={() => {
-        navigate(`/conference?room=${roomName}&name=${participantName}&video=${videoEnabled}&audio=${audioEnabled}`);
-      }}
+      onSubmit={handlePreJoin}
       setVideoEnabled={setVideoEnabled}
       setAudioEnabled={setAudioEnabled}
     />
