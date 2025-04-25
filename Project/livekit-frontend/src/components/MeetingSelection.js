@@ -187,6 +187,7 @@ const styles = {
     listStyleType: "none",
     padding: 0,
     width: "60%",
+    marginBottom: 60 ,
   },
   roomItem: {
     display: "flex",
