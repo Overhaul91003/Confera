@@ -172,9 +172,16 @@ const styles = {
     transition: "0.3s",
   },
   roomsHeading: {
-    fontSize: "25px",
-    marginBottom: "10px",
+    fontSize: "40px",
     fontWeight: "bold",
+    textAlign: "left",
+    background: "linear-gradient(90deg, #39ff14, #9d00ff, #39ff14)",
+    backgroundSize: "200% auto",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    animation: "shimmer 3s linear infinite",
+    textShadow: "0 0 10px rgba(255,255,255,0.5)",
+    marginBottom: "20px",
   },
   roomsList: {
     listStyleType: "none",

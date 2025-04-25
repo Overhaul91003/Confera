@@ -3,11 +3,16 @@ import { getHistory } from "../utils/meetingHistory";
 
 const styles = {
   heading: {
+    fontSize: "40px",
     fontWeight: "bold",
-    fontSize: "25px",
-    marginTop: "30px",
-    marginBottom: "10px",
-    justifyContent: "center",
+    textAlign: "center",
+    background: "linear-gradient(90deg, #ff0080, #00ffff, #ff0080)",
+    backgroundSize: "200% auto",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    animation: "shimmer 3s linear infinite",
+    textShadow: "0 0 10px rgba(255,255,255,0.5)",
+    marginBottom: "20px",
   },
   headerRow: {
     display: "flex",
