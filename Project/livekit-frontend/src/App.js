@@ -18,7 +18,7 @@ import {
 
 import "@livekit/components-styles";
 
-const serverUrl = "ws://localhost:7880";
+const serverUrl = process.env.REACT_APP_LIVEKIT_WS;
 
 const ConferenceRoom = () => {
   const location = useLocation();

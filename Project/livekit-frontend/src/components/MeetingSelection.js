@@ -13,7 +13,7 @@ const MeetingSelection = () => {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/rooms");
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/rooms`);
         setRooms(response.data.rooms);
       } catch (error) {
         console.error("Error fetching rooms:", error);
@@ -31,7 +31,7 @@ const MeetingSelection = () => {
     }
 
     try {
-      await axios.post("http://localhost:3000/createRoom", { roomName });
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/createRoom`,{ roomName });
       localStorage.removeItem(`chatMessages_${roomName}`);
       alert("Success, Room has been created!");
       setRooms([...rooms, { name: roomName, participants: 0 }]);
@@ -50,7 +50,7 @@ const MeetingSelection = () => {
   const handleJoinRoom = async (room) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/getToken?roomName=${room.name}&participantName=Guest`
+        `${process.env.REACT_APP_BACKEND_URL}/getToken?roomName=${room.name}&participantName=Guest`
       );
 
       if (response.data.token) {

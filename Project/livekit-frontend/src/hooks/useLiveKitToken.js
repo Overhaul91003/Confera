@@ -9,7 +9,7 @@ const useLiveKitToken = (roomName, participantName, isPreJoinComplete) => {
       const fetchToken = async () => {
         try {
           const response = await fetch(
-            `http://localhost:3000/getToken?roomName=${roomName}&participantName=${participantName}`
+            `${process.env.REACT_APP_BACKEND_URL}/getToken?roomName=${roomName}&participantName=${participantName}`
           );
           if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
           const data = await response.json();

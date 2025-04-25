@@ -11,11 +11,11 @@ const RecordButton = () => {
     try {
       if (!isRecording) {
         // Start recording
-        const res = await axios.post('http://localhost:3000/record/start', { roomName });
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/record/start`, { roomName });
         console.log(res.data); // { message, filename }
       } else {
         // Stop recording
-        const res = await axios.post('http://localhost:3000/record/stop', { roomName });
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/record/stop`, { roomName });
         console.log(res.data); // { message: 'Recording stopped' }
       }
       setIsRecording(!isRecording);

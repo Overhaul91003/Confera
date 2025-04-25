@@ -156,6 +156,9 @@ Detailed structure is maintained in this repo alongside this README.
 3. Grant camera/microphone permissions.
 4. Use in-meeting controls, chat, and background effects.
 5. Start/stop recording as needed; find output in `livekit-egress/`.
+6. **Room persistence:** Rooms you create will stay alive (and visible in “Active Rooms”) for a short time after everyone leaves, then are automatically deleted after 10 minutes of inactivity.  
+7. **LAN-only demo:** This app is not deployed publicly—cross-device usage only works on machines connected to the **same LAN** (e.g. `http://192.168.1.35:3001`), not over the open internet.
+
 
 ---
 
