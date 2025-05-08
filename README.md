@@ -159,7 +159,7 @@ Detailed structure is maintained in this repo alongside this README.
 ---
 
 ## Development Status
-This project was built over 4 months (January 15 — May 15, 2025) and continues to evolve daily under active development.
+This project was built over 4 months and continues to evolve daily under active development.
 
 ---
 
