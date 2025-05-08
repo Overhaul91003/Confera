@@ -1,8 +1,5 @@
 # Confera (Video Conferening Web Application)
 
-This project was created as part of an internship at BARC.
-
-> ⚠️ **Disclaimer:** This repository is provided for demonstration purposes. It is *not* an exact replica of the confidential project developed at the Bhabha Atomic Research Center (BARC).
 
 ---
 
@@ -28,7 +25,6 @@ This monorepo contains a full-stack video conferencing web application built usi
 - **Backend** (Node.js + Express) for room management, access token generation, and egress control.
 - **Frontend** (React) with LiveKit components for joining rooms, in-meeting controls, chat, virtual backgrounds, and history.
 
-While this demo covers the core features of a conferencing app, the actual BARC project includes additional proprietary integrations and is not published here.
 
 ---
 
